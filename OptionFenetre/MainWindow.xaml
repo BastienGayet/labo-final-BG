@@ -1,0 +1,31 @@
+﻿<Window x:Class="OptionFenetre.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:OptionFenetre"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="180" Width="185">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="132*"/>
+            <ColumnDefinition Width="53*"/>
+        </Grid.ColumnDefinitions>
+        <DockPanel Grid.ColumnSpan="2" Background="Azure">
+            <StackPanel DockPanel.Dock="Bottom" Background="Azure">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Button x:Name="ButOk" Content="Ok" Width="40" Click="ButOk_Click"/>
+                    <Button x:Name="ButAnnuler" Content="Annuler" Width="60" Click="ButAnnuler_Click"/>
+                    <Button x:Name="ButAppliquer" Content="Appliquer" Width="70" Click="ButAppliquer_Click"/>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel>
+                <Label Content="Taille du texte"/>
+                <TextBox x:Name="TBTailleFenetre" Width="50" HorizontalAlignment="Left" Margin="6" Background="Azure" Foreground="Black"/>
+                <Label Content="Couleur de fond"/>
+                    <TextBox x:Name="TBCouleur" Width="100" HorizontalAlignment="Left" Margin="6" Background="Azure" Foreground="Black"/>
+            </StackPanel>
+        </DockPanel>
+
+    </Grid>
+</Window>
