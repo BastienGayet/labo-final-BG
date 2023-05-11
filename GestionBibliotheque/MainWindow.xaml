@@ -7,7 +7,10 @@
         xmlns:clGestionBibliotheque="clr-namespace:CLGestionBibliotheque;assembly=CLGestionBibliotheque"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance clGestionBibliotheque:MyData, IsDesignTimeCreatable=True}"
-        Title="Gestion de la bibliothèque" Height="500" Width="800">
+        Title="Gestion de la bibliothèque" Height="600" Width="800">
+   <Window.Resources>
+       <local:LivreToColorConverter x:Key="LivreToColorConverter"/>
+   </Window.Resources>
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -23,49 +26,47 @@
             <TabItem Header="Auteurs">
                 <StackPanel Margin="5">
                     <Label>Nom:</Label>
-                    <TextBox Text="{Binding CurrentAuteur.Nom, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBox x:Name="NomTB" Text="{Binding CurrentAuteur.Nom, UpdateSourceTrigger=PropertyChanged}" />
                     <Label>Prénom:</Label>
-                    <TextBox Text="{Binding CurrentAuteur.Prenom, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBox  x:Name="PrenomTB" Text="{Binding CurrentAuteur.Prenom, UpdateSourceTrigger=PropertyChanged}" />
                     <Label>Nationalité:</Label>
-                    <TextBox Text="{Binding CurrentAuteur.Nationalite,UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBox x:Name="NationaliteTB" Text="{Binding CurrentAuteur.Nationalite,UpdateSourceTrigger=PropertyChanged}"/>
                     <Label>Date de naissance:</Label>
-                    <DatePicker SelectedDate="{Binding CurrentAuteur.DateNaissance,UpdateSourceTrigger=PropertyChanged}" />
-                    <Button Margin="0,10,0,0">Ajouter l'auteur</Button>
-                    <Button Margin="0,10,0,0">Modifer l'auteur</Button>
-                    <Button Margin="0,10,0,0">supprimerl'auteur</Button>
-                    <Button x:Name="BSauvegarderAuteur" Margin="0,10,0,0">Sauvegarder</Button>
-                    <DataGrid AutoGenerateColumns="False" CanUserAddRows="True" ItemsSource="{Binding Auteurs}" SelectedItem="{Binding CurrentAuteur}">
+                    <DatePicker x:Name="DateNaissanceDP" SelectedDate="{Binding CurrentAuteur.DateNaissance,UpdateSourceTrigger=PropertyChanged}" />
+                    <Button x:Name="BnAjoutAuteur" Margin="0,10,0,0" Click="BnAjoutAuteur_Click">Ajouter l'auteur</Button>
+                    <Button x:Name="BNSupprimerAuteur" Margin="0,10,0,0" Click="BNSupprimerAuteur_Click">supprimerl'auteur</Button>
+                    <Button x:Name="BSauvegarderAuteur" Margin="0,10,0,0" Click="BSauvegarderAuteur_Click">Sauvegarder</Button>
+                    <DataGrid Height="Auto" AutoGenerateColumns="False" CanUserAddRows="True" ItemsSource="{Binding Auteurs}" SelectedItem="{Binding CurrentAuteur}">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Nom" Binding="{Binding Nom, UpdateSourceTrigger=PropertyChanged}"/>
                             <DataGridTextColumn Header="Prénom" Binding="{Binding Prenom , UpdateSourceTrigger=PropertyChanged}"/>
                             <DataGridTextColumn Header="Nationalité" Binding="{Binding Nationalite , UpdateSourceTrigger=PropertyChanged}"/>
-                            <DataGridTextColumn Header="Date de naissance" Binding="{Binding DateNaissance, UpdateSourceTrigger=PropertyChanged}"/>
+                            <DataGridTextColumn Header="Date de naissance" Binding="{Binding DateNaissance, UpdateSourceTrigger=PropertyChanged ,StringFormat=dd/MM/yyyy}"/>
                         </DataGrid.Columns>
                     </DataGrid>
                 </StackPanel>
             </TabItem>
 
             <TabItem Header="Membres">
-                <StackPanel Margin="5,0,5,0" Height="450">
+                <StackPanel Margin="5,0,5,0">
                     <Label>Nom:</Label>
-                    <TextBox Text="{Binding  CurrentMembreRegular.Nom, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBox x:Name="NomMembreTB" Text="{Binding  CurrentMembreRegular.Nom, UpdateSourceTrigger=PropertyChanged}" />
                     <Label>Adresse:</Label>
-                    <TextBox Text="{Binding CurrentMembreRegular.Adresse,UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBox x:Name="AdresseTB" Text="{Binding CurrentMembreRegular.Adresse,UpdateSourceTrigger=PropertyChanged}" />
                     <Label>Numéro de membre:</Label>
-                    <TextBox Text="{Binding  CurrentMembreRegular.NumeroMembre, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBox x:Name="NumTB" Text="{Binding  CurrentMembreRegular.NumeroMembre, UpdateSourceTrigger=PropertyChanged}" />
                     <Label>Date d'inscription:</Label>
-                    <DatePicker SelectedDate="{Binding  CurrentMembreRegular.DateInscription , UpdateSourceTrigger=PropertyChanged}" />
+                    <DatePicker x:Name="DateINSTB" SelectedDate="{Binding  CurrentMembreRegular.DateInscription , UpdateSourceTrigger=PropertyChanged}" />
                     <Label>Nbre de livres emprunter:</Label>
-                    <TextBox Text="{Binding CurrentMembreRegular.NbreLivreMax, UpdateSourceTrigger=PropertyChanged}" />
-                    <Button Margin="0,10,0,0">Ajouter le membre</Button>
-                    <Button Margin="0,10,0,0" >Modifier le membre</Button>
-                    <Button Margin="0,10,0,0">Supprimer le membre</Button>
-                    <Button x:Name="bSauvegarderMembre" Margin="0,10,0,0">Sauvegarder</Button>
-                    <DataGrid Height="100" CanUserAddRows="True" AutoGenerateColumns="False" ItemsSource="{Binding MembreRegulars}" SelectedItem="{Binding CurrentMembreRegular}">
+                    <TextBox x:Name="NbreLivreTB" Text="{Binding CurrentMembreRegular.NbreLivreMax, UpdateSourceTrigger=PropertyChanged}" />
+                    <Button x:Name="BNAjouterMembre" Margin="0,10,0,0" Click="BNAjouterMembre_Click">Ajouter le membre</Button>
+                    <Button x:Name="BNSupprimerMembre" Margin="0,10,0,0" Click="BNSupprimerMembre_Click">Supprimer le membre</Button>
+                    <Button x:Name="bSauvegarderMembre" Margin="0,10,0,0" Click="bSauvegarderMembre_Click">Sauvegarder</Button>
+                    <DataGrid Height="Auto" CanUserAddRows="True" AutoGenerateColumns="False" ItemsSource="{Binding MembreRegulars}" SelectedItem="{Binding CurrentMembreRegular}">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Nom " Binding="{Binding Nom, UpdateSourceTrigger=PropertyChanged}"/>
                             <DataGridTextColumn Header="Adresse" Binding="{Binding Adresse , UpdateSourceTrigger= PropertyChanged}"/>
-                            <DataGridTextColumn Header="Date Inscription" Binding="{Binding DateInscription,UpdateSourceTrigger=PropertyChanged}"/>
+                            <DataGridTextColumn Header="Date Inscription" Binding="{Binding DateInscription,UpdateSourceTrigger=PropertyChanged,StringFormat=dd/MM/yyyy}"/>
                             <DataGridTextColumn Header=" Livre emprunter " Binding="{Binding NbreLivreMax ,UpdateSourceTrigger= PropertyChanged}"/>
                         </DataGrid.Columns>
                     </DataGrid>
@@ -83,15 +84,15 @@
                     <Label> Titre Livre :</Label>
                     <TextBox Text="{Binding CurrentEmprunt.BorrowedLivres.Titre, UpdateSourceTrigger=PropertyChanged}" />
                     <CheckBox IsChecked="{Binding CurrentEmprunt.IsReturned,UpdateSourceTrigger=PropertyChanged}">Rendu</CheckBox>
-                    <Button Margin="0,10,0,0">Ajouter le prêt</Button>
-                    <Button Margin="0,10,0,0">Supprimer le prêt</Button>
-                    <Button x:Name="bSauvegarderPret" Margin="0,10,0,0">Sauvegarder</Button>
-                    <DataGrid Height="100" CanUserAddRows="True" AutoGenerateColumns="False" ItemsSource="{Binding Emprunts }" SelectedItem="{Binding CurrentEmprunt}">
+                    <Button x:Name="BNAjouterPret" Margin="0,10,0,0" Click="BNAjouterPret_Click">Ajouter le prêt</Button>
+                    <Button x:Name="BNSupprimerPret" Margin="0,10,0,0" Click="BNSupprimerPret_Click">Supprimer le prêt</Button>
+                    <Button x:Name="bSauvegarderPret" Margin="0,10,0,0" Click="bSauvegarderPret_Click">Sauvegarder</Button>
+                    <DataGrid Height="Auto" CanUserAddRows="True" AutoGenerateColumns="False" ItemsSource="{Binding Emprunts }" SelectedItem="{Binding CurrentEmprunt}">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Date emprunt" Binding="{Binding BorrowDate , UpdateSourceTrigger=PropertyChanged}"/>
-                            <DataGridTextColumn Header="Date retour " Binding="{Binding BorrowDate, UpdateSourceTrigger=PropertyChanged}"/>
+                            <DataGridTextColumn Header="Date emprunt" Binding="{Binding BorrowDate , UpdateSourceTrigger=PropertyChanged,StringFormat=dd/MM/yyyy}"/>
+                            <DataGridTextColumn Header="Date retour " Binding="{Binding BorrowDate, UpdateSourceTrigger=PropertyChanged,StringFormat=dd/MM/yyyy}"/>
                             <DataGridTextColumn Header="Numero Membre" Binding="{Binding BorrowingMembre.NumeroMembre, UpdateSourceTrigger=PropertyChanged}"/>
-                            <DataGridTextColumn Header="Titre Livre " Binding="{Binding BorrowedLivres.Titre , UpdateSourceTrigger=PropertyChanged}"/>
+                            <DataGridTextColumn Header="Titre Livre " Binding="{Binding BorrowedLivres.Titre , UpdateSourceTrigger=PropertyChanged,StringFormat=dd/MM/yyyy}"/>
                             <DataGridCheckBoxColumn Header="Rendu" Binding="{Binding IsReturned, UpdateSourceTrigger=PropertyChanged}"/>
                         </DataGrid.Columns>
                     </DataGrid>
@@ -101,22 +102,29 @@
             <TabItem Header="Livres">
                 <StackPanel Margin="5">
                     <Label>Titre:</Label>
-                    <TextBox Text="{Binding CurrentLivresFiction.Titre, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBox x:Name="TITRETB" Text="{Binding CurrentLivresFiction.Titre, UpdateSourceTrigger=PropertyChanged}" />
                     <Label>Nom Auteur:</Label>
-                    <TextBox Text="{Binding CurrentLivresFiction.nomAuteurs, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                    <TextBox x:Name="NOMAUTEURTB" Text="{Binding CurrentLivresFiction.nomAuteurs, UpdateSourceTrigger=PropertyChanged}"></TextBox>
                     <Label>Éditeur:</Label>
-                    <TextBox Text="{Binding CurrentLivresFiction.Editeur, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBox x:Name="EditeurTB" Text="{Binding CurrentLivresFiction.Editeur, UpdateSourceTrigger=PropertyChanged}" />
                     <Label>Année de publication:</Label>
-                    <TextBox Text="{Binding CurrentLivresFiction.AnnéePublication, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBox x:Name="AnneePubliTB" Text="{Binding CurrentLivresFiction.AnnéePublication, UpdateSourceTrigger=PropertyChanged}" />
                     <Label>Prix:</Label>
-                    <TextBox Text="{Binding CurrentLivresFiction.Prix, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBox  x:Name="PRIXTB" Text="{Binding CurrentLivresFiction.Prix, UpdateSourceTrigger=PropertyChanged}" />
                     <Label>ISBN:</Label>
-                    <TextBox Text="{Binding CurrentLivresFiction.ISBN, UpdateSourceTrigger=PropertyChanged}" />
-                    <CheckBox IsChecked="{Binding CurrentLivresFiction.Disponible, UpdateSourceTrigger=PropertyChanged}">Disponible</CheckBox>
-                    <Button Margin="0,10,0,0">Ajouter le livre</Button>
-                    <Button Margin="0,10,0,0">Supprimer le livre</Button>
+                    <TextBox x:Name="ISBNTB" Text="{Binding CurrentLivresFiction.ISBN, UpdateSourceTrigger=PropertyChanged}" />
+                    <Label>Genre:</Label>
+                    <TextBox x:Name="GenreTB"  Text="{Binding CurrentLivresFiction.Genre, UpdateSourceTrigger=PropertyChanged}"/>
+                    <CheckBox x:Name="DispoTB" IsChecked="{Binding CurrentLivresFiction.Disponible, UpdateSourceTrigger=PropertyChanged}">Disponible</CheckBox>
+                    <Button x:Name="BNAjouterLivre" Margin="0,10,0,0" Click="BNAjouterLivre_Click">Ajouter le livre</Button>
+                    <Button x:Name="BNSupprimerLivre" Margin="0,10,0,0" Click="BNSupprimerLivre_Click">Supprimer le livre</Button>
                     <Button x:Name="bSauvegarderLivre"  Margin="0,10,0,0" Click="bSauvegarderLivre_Click">Sauvegarder</Button>
-                    <DataGrid Height="100" CanUserAddRows="True" AutoGenerateColumns="False" ItemsSource="{Binding LivresFiction}" SelectedItem="{Binding CurrentLivresFiction}">
+                    <DataGrid Height="Auto" CanUserAddRows="True" AutoGenerateColumns="False" ItemsSource="{Binding LivresFiction}" SelectedItem="{Binding CurrentLivresFiction}">
+                        <DataGrid.RowStyle>
+                            <Style TargetType="DataGridRow">
+                                <Setter Property="Background" Value="{Binding AnnéePublication,  Converter={StaticResource LivreToColorConverter}, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"/>
+                            </Style>
+                        </DataGrid.RowStyle>
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Titre" Binding="{Binding Titre, UpdateSourceTrigger=PropertyChanged}"/>
                             <DataGridTextColumn Header="Nom auteur" Binding="{Binding nomAuteurs, UpdateSourceTrigger=PropertyChanged}" />

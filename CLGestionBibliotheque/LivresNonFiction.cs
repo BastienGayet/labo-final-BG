@@ -30,10 +30,11 @@ public class LivresNonFiction : Livres , INotifyPropertyChanged
     }
     #endregion
 
-    public LivresNonFiction()
+    public LivresNonFiction() : base()
     {
-            
+        Domaine = "";
     }
+
 
     #region Methodes
 

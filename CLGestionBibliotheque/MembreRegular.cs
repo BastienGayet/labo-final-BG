@@ -26,6 +26,10 @@ public class MembreRegular : Membre, INotifyPropertyChanged
     {
         this.NbreLivreMax=nbreLivreMax;
     }
+    public MembreRegular() : base()
+    {
+        NbreLivreMax = 0;
+    }
 
 
     #endregion

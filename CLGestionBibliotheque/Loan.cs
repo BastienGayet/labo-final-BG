@@ -9,8 +9,8 @@ namespace CLGestionBibliotheque
     {
         #region Variables Membres et Propriétés
 
-        private Livres _borrowedLivres;
-        public Livres BorrowedLivres
+        private LivresFiction _borrowedLivres;
+        public LivresFiction BorrowedLivres
         {
             get => _borrowedLivres;
             set
@@ -20,8 +20,8 @@ namespace CLGestionBibliotheque
             }
         }
 
-        private Membre _borrowingMembre;
-        public Membre BorrowingMembre
+        private MembreRegular _borrowingMembre;
+        public MembreRegular BorrowingMembre
         {
             get => _borrowingMembre;
             set
@@ -71,23 +71,31 @@ namespace CLGestionBibliotheque
 
         #region Constructeur
         // const init
-        public Loan(Livres borrowedLivres, Membre borrowingMembre, DateTime borrowDate)
+        public Loan(LivresFiction borrowedLivres, MembreRegular borrowingMembre, DateTime borrowDate)
         {
             this.BorrowedLivres = borrowedLivres;
             this.BorrowingMembre = borrowingMembre;
             this.BorrowDate = borrowDate;
             IsReturned = false;
         }
+        public Loan()
+        {
+            BorrowedLivres = null;
+            BorrowingMembre = null;
+            BorrowDate = DateTime.MinValue;
+            IsReturned = false;
+        }
+
 
         #endregion
 
         #region Méthodes
 
-        public void ReturnLivres(DateTime returnDate)
+        /*public void ReturnLivres(DateTime returnDate)
         {
             ReturnDate = returnDate;
             IsReturned = true;
-        }
+        }*/
 
         public void Affiche()
         {

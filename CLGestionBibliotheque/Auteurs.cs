@@ -41,7 +41,7 @@ namespace CLGestionBibliotheque
         }
 
         private DateTime _dateNaissance;
-        public DateTime DateNaissance
+        public DateTime DateNaissance 
         {
             get => _dateNaissance;
             set
@@ -63,7 +63,7 @@ namespace CLGestionBibliotheque
             this.DateNaissance = dateNaissance;
         }
 
-        public Auteurs()
+        public Auteurs(): this("","",new DateTime(1900,01,01),"")
         {
         }
 

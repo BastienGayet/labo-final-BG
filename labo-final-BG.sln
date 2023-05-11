@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CLGestionBibliotheque", "CL
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CLSerializer", "CLSerializer\CLSerializer.csproj", "{528A35D8-03CF-44A7-9FEC-BE7420CA7D2F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OptionFenetre", "OptionFenetre\OptionFenetre.csproj", "{4B135178-CC24-40BE-B217-0257D9C69F14}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OptionFenetre", "OptionFenetre\OptionFenetre.csproj", "{4B135178-CC24-40BE-B217-0257D9C69F14}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

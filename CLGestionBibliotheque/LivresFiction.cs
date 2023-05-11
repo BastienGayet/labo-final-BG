@@ -31,6 +31,12 @@ public class LivresFiction : Livres //,  INotifyPropertyChanged
     {
         Genre = genre;
     }
+
+    public LivresFiction() : base()
+    {
+        Genre = "";
+    }
+
     #endregion
 
     #region Méthode

@@ -22,16 +22,20 @@ public class MembrePremium : Membre , INotifyPropertyChanged
 
     #region Constructeur
 
-   /* public MembrePremium(double prixabo) : base()
-    {
-        PrixAbo = prixabo;
-    }*/
 
     // Si la classe Membre a un constructeur avec des paramètres, vous pouvez également les inclure, par exemple :
     public MembrePremium(string nom, string adresse, int numeroMembre, DateTime dateInscription, double prixabo) : base(nom, adresse, numeroMembre, dateInscription)
     {
         PrixAbo = prixabo;
     }
+
+    public MembrePremium() : base()
+    {
+        PrixAbo = 0;
+    }
+
+
+
     #endregion
 
     #region Méthode

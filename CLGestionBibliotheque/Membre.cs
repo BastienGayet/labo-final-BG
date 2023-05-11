@@ -69,6 +69,14 @@ namespace CLGestionBibliotheque
             this.DateInscription = dateInscription;
         }
 
+        public Membre()
+        {
+            Nom = "";
+            Adresse = "";
+            NumeroMembre = 0;
+            DateInscription = DateTime.MinValue;
+        }
+
 
         #endregion
 

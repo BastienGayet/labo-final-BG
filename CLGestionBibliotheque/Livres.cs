@@ -102,7 +102,7 @@ public  class Livres : INotifyPropertyChanged
         this.Editeur = editeur;
     }
 
-    public Livres()
+    public Livres() : this("","","",0,0,0,false)
     {
             
     }
