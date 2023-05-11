@@ -1,4 +1,4 @@
-﻿<Window x:Class="GestionBibliotheque.MainWindow"
+﻿<Window x:Name="clo" x:Class="GestionBibliotheque.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -7,7 +7,7 @@
         xmlns:clGestionBibliotheque="clr-namespace:CLGestionBibliotheque;assembly=CLGestionBibliotheque"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance clGestionBibliotheque:MyData, IsDesignTimeCreatable=True}"
-        Title="Gestion de la bibliothèque" Height="600" Width="800">
+        Title="Gestion de la bibliothèque" Height="600" Width="800" Closing="clo_Closing">
    <Window.Resources>
        <local:LivreToColorConverter x:Key="LivreToColorConverter"/>
    </Window.Resources>
@@ -80,7 +80,7 @@
                     <Label>Date de retour:</Label>
                     <DatePicker SelectedDate="{Binding CurrentEmprunt.ReturnDate, UpdateSourceTrigger=PropertyChanged}"/>
                     <Label>Numero Membre :</Label>
-                    <TextBox Text="{Binding CurrentEmprunt.BorrowingMembre.NumeroMembre, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBox Text="{Binding CurrentEmprunt.BorrowingMembre.NumeroMembre, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" />
                     <Label> Titre Livre :</Label>
                     <TextBox Text="{Binding CurrentEmprunt.BorrowedLivres.Titre, UpdateSourceTrigger=PropertyChanged}" />
                     <CheckBox IsChecked="{Binding CurrentEmprunt.IsReturned,UpdateSourceTrigger=PropertyChanged}">Rendu</CheckBox>

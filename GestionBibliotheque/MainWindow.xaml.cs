@@ -48,25 +48,25 @@ namespace GestionBibliotheque
                 myData = new MyData();
 
             DataContext = myData;
-            MyRegistryParamManager.PositionX = 50;
-            MyRegistryParamManager.PositionY = 50;
+            
 
-            int pos = MyRegistryParamManager.PositionX;
+            this.Left = MyRegistryParamManager.PositionX;
+            this.Top = MyRegistryParamManager.PositionY;
 
-          /*  Auteurs = new ObservableCollection<Auteurs>();
-            Auteurs.Add(new Auteurs("J.K.", "Rowling", new DateTime(1965, 7, 31), "Britannique"));
-            Auteurs.Add(new Auteurs("George", "Orwell", new DateTime(1903, 6, 25), "Britannique"));
-            Auteurs.Add(new Auteurs("Frank", "Herbert", new DateTime(1920, 10, 8), "Américain"));
-            Auteurs.Add(new Auteurs("Douglas", "Adams", new DateTime(1952, 3, 11), "Britannique"));
-            Auteurs.Add(new Auteurs("J.R.R.", "Tolkien", new DateTime(1892, 1, 3), "Britannique"));
+            /*  Auteurs = new ObservableCollection<Auteurs>();
+              Auteurs.Add(new Auteurs("J.K.", "Rowling", new DateTime(1965, 7, 31), "Britannique"));
+              Auteurs.Add(new Auteurs("George", "Orwell", new DateTime(1903, 6, 25), "Britannique"));
+              Auteurs.Add(new Auteurs("Frank", "Herbert", new DateTime(1920, 10, 8), "Américain"));
+              Auteurs.Add(new Auteurs("Douglas", "Adams", new DateTime(1952, 3, 11), "Britannique"));
+              Auteurs.Add(new Auteurs("J.R.R.", "Tolkien", new DateTime(1892, 1, 3), "Britannique"));
 
-            LivresFiction = new ObservableCollection<LivresFiction>();
-            LivresFiction.Add(new LivresFiction("Seigneurs des Anneaux", "Gayet", "Petit Navire", 1996, 12345678, 12.25, true, "SF"));
-            LivresFiction.Add(new LivresFiction("Harry Potter à l'école des sorciers", "J.K. Rowling", "Bloomsbury", 1997, 987654321, 10.99, true, "Fantasy"));
-            LivresFiction.Add(new LivresFiction("Dune", "Frank Herbert", "Chilton Books", 1965, 23456789, 14.99, true, "SF"));
-            LivresFiction.Add(new LivresFiction("1984", "George Orwell", "Secker & Warburg", 1949, 34567890, 9.99, false, "Dystopie"));
-            LivresFiction.Add(new LivresFiction("Le Guide du voyageur galactique", "Douglas Adams", "Pan Books", 1979, 45678901, 11.99, false, "SF"));
-            DataContext = this;*/
+              LivresFiction = new ObservableCollection<LivresFiction>();
+              LivresFiction.Add(new LivresFiction("Seigneurs des Anneaux", "Gayet", "Petit Navire", 1996, 12345678, 12.25, true, "SF"));
+              LivresFiction.Add(new LivresFiction("Harry Potter à l'école des sorciers", "J.K. Rowling", "Bloomsbury", 1997, 987654321, 10.99, true, "Fantasy"));
+              LivresFiction.Add(new LivresFiction("Dune", "Frank Herbert", "Chilton Books", 1965, 23456789, 14.99, true, "SF"));
+              LivresFiction.Add(new LivresFiction("1984", "George Orwell", "Secker & Warburg", 1949, 34567890, 9.99, false, "Dystopie"));
+              LivresFiction.Add(new LivresFiction("Le Guide du voyageur galactique", "Douglas Adams", "Pan Books", 1979, 45678901, 11.99, false, "SF"));
+              DataContext = this;*/
 
 
         }
@@ -186,28 +186,45 @@ namespace GestionBibliotheque
 
         private void BNAjouterPret_Click(object sender, RoutedEventArgs e)
         {
-            if (myData.CurrentLivresFiction != null || myData.CurrentMembreRegular != null)
+           /* string titreLivre = myData.CurrentLivresFiction.Titre;
+
+            LivresFiction livreEmprunter = myData.LivresFiction.FirstOrDefault(l => l.Titre == titreLivre);
+
+            int numMembre = myData.CurrentMembreRegular.NumeroMembre;
+
+            MembreRegular NumMembre = myData.MembreRegulars.FirstOrDefault(n => n.NumeroMembre == numMembre);
+
+
+            if (livreEmprunter != null && numMembre != null)
             {
-                if (myData.CurrentMembreRegular.NbreLivreMax >= 5)
-                {
-                    MessageBox.Show("Le membre a atteint son nombre maximum de prêts autorisés.");
-                    return;
-                }
+                myData.Emprunts.Add(new Loan(livreEmprunter, NumMembre, DateTime.Now));
+                livreEmprunter.Disponible = false;
+                NumMembre.NbreLivreMax++;
+            }*/
+             if (myData.CurrentLivresFiction != null || myData.CurrentMembreRegular != null)
+             {
+                 
+
+                 if (myData.CurrentMembreRegular.NbreLivreMax >= 5)
+                 {
+                     MessageBox.Show("Le membre a atteint son nombre maximum de prêts autorisés.");
+                     return;
+                 }
 
 
-               // myData.Emprunts.Add(new Loan(myData.CurrentLivresFiction.Titre ,myData.CurrentMembreRegular.NumeroMembre,DateTime.Now));
-                myData.CurrentLivresFiction.Disponible = false;
-                myData.CurrentMembreRegular.NbreLivreMax++;
+                 myData.Emprunts.Add(new Loan(myData.CurrentLivresFiction ,myData.CurrentMembreRegular,DateTime.Now));
+                 myData.CurrentLivresFiction.Disponible = false;
+                 myData.CurrentMembreRegular.NbreLivreMax++;
 
-            }
-
+             }
+             
 
         }
 
         private void BNSupprimerPret_Click(object sender, RoutedEventArgs e)
         {
             if (myData.CurrentEmprunt != null)
-            {
+            { // JE DOIS STOCKER LE NUM D emprunt 
                 myData.Emprunts.Remove(myData.CurrentEmprunt);
                 myData.CurrentMembreRegular.NbreLivreMax--;
             }
@@ -238,6 +255,12 @@ namespace GestionBibliotheque
             {
                 myData.MembreRegulars.Remove(myData.CurrentMembreRegular);
             }
+        }
+
+        private void clo_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            MyRegistryParamManager.PositionX = (int)this.Left;
+            MyRegistryParamManager.PositionY = (int)this.Top;
         }
     }
 }
