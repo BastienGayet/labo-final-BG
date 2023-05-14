@@ -186,22 +186,7 @@ namespace GestionBibliotheque
 
         private void BNAjouterPret_Click(object sender, RoutedEventArgs e)
         {
-           /* string titreLivre = myData.CurrentLivresFiction.Titre;
-
-            LivresFiction livreEmprunter = myData.LivresFiction.FirstOrDefault(l => l.Titre == titreLivre);
-
-            int numMembre = myData.CurrentMembreRegular.NumeroMembre;
-
-            MembreRegular NumMembre = myData.MembreRegulars.FirstOrDefault(n => n.NumeroMembre == numMembre);
-
-
-            if (livreEmprunter != null && numMembre != null)
-            {
-                myData.Emprunts.Add(new Loan(livreEmprunter, NumMembre, DateTime.Now));
-                livreEmprunter.Disponible = false;
-                NumMembre.NbreLivreMax++;
-            }*/
-             if (myData.CurrentLivresFiction != null || myData.CurrentMembreRegular != null)
+            if (myData.CurrentLivresFiction != null || myData.CurrentMembreRegular != null)
              {
                  
 
@@ -224,7 +209,7 @@ namespace GestionBibliotheque
         private void BNSupprimerPret_Click(object sender, RoutedEventArgs e)
         {
             if (myData.CurrentEmprunt != null)
-            { // JE DOIS STOCKER LE NUM D emprunt 
+            {
                 myData.Emprunts.Remove(myData.CurrentEmprunt);
                 myData.CurrentMembreRegular.NbreLivreMax--;
             }

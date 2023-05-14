@@ -91,12 +91,6 @@ namespace CLGestionBibliotheque
 
         #region Méthodes
 
-        /*public void ReturnLivres(DateTime returnDate)
-        {
-            ReturnDate = returnDate;
-            IsReturned = true;
-        }*/
-
         public void Affiche()
         {
             Console.WriteLine(this);

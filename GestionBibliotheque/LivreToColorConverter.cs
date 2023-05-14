@@ -9,15 +9,15 @@ public class LivreToColorConverter : IValueConverter
 {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            int anneePublicationTmp = (int)value;
-
-            if (anneePublicationTmp < 2010)
+          
+            Boolean dispotmp = (Boolean)value;
+            if (dispotmp == true)
             {
-                return Brushes.Red;
+                return Brushes.Green;
             }
             else
             {
-                return Brushes.Green;
+                return Brushes.Red;
             }
         }
 
