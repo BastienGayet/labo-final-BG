@@ -225,6 +225,7 @@ namespace GestionBibliotheque
             int NbreLivreMax = Int32.Parse(NbreLivreTB.Text);
 
             myData.MembreRegulars.Add(new MembreRegular(nom,adresse,numeroMembre,dateInscription,NbreLivreMax));
+            
 
             NomMembreTB.Text = "";
             AdresseTB.Text = "";
@@ -246,6 +247,8 @@ namespace GestionBibliotheque
         {
             MyRegistryParamManager.PositionX = (int)this.Left;
             MyRegistryParamManager.PositionY = (int)this.Top;
+            Application.Current.Shutdown();
         }
+        
     }
 }
